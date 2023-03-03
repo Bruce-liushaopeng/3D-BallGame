@@ -16,8 +16,8 @@ export class GameController {
     }
 
     detectCollision() {
-        const xDiff = Math.abs(Math.abs(this.playerBall.position.x) - Math.abs(this.redBall.position.x))
-        const yDiff = Math.abs(Math.abs(this.playerBall.position.y) - Math.abs(this.redBall.position.y))
+        const xDiff = Math.abs(this.playerBall.position.x - this.redBall.position.x)
+        const yDiff = Math.abs(this.playerBall.position.y - this.redBall.position.y)
         if (xDiff < 3 && yDiff < 3) {
                 console.log("collision")
                 console.log(xDiff)
