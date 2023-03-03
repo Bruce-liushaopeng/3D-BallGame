@@ -1,14 +1,16 @@
 export class BallState {
-    constructor(canvasLength) {
-        this.canvasLength = canvasLength
+    constructor(isBlueball) {
         this.xSpeed = Math.random() - 0.5
         this.ySpeed = Math.random() - 0.5
         this.friction = 0.004
+        this.isBlueball = isBlueball
         this.position = Array(2).fill().map(() => Math.random() * 80 - 40)
     }
 
     moveBall(sphere) {
-        this.speedDecrease();
+        if(!this.isBlueball){
+            this.speedDecrease();
+        } 
         sphere.position.x += this.xSpeed
         sphere.position.y +=this.ySpeed
         this.positionCheck(sphere)

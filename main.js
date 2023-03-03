@@ -38,12 +38,11 @@ const sphereSize = 1;
 const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
 scene.add( pointLightHelper );
 
-
 scene.add(gameController.getPlayerBall());
-
 function animate() {
   requestAnimationFrame( animate );
   gameController.moveWhiteBall();
+  gameController.moveBlueBall()
   gameController.detectCollision();
   renderer.render(scene, camera)
   scoreDiv.innerHTML = gameController.getScore();
