@@ -17,16 +17,16 @@ export class GameController {
         if (this.blueBall) {
             scene.remove(this.blueBall)
         }
-        const whiteBall = constructPlayerBall(scene)
+        const whiteBall = constructBall(scene, 3 , "", false)
         this.playerBall = whiteBall.mesh;
         this.playerBallState = whiteBall.ballState
         this.scene = scene
 
-        const redBall = constructRedBall(scene)
+        const redBall = constructBall(scene, 2, "red", false)
         this.redBall = redBall.mesh;
         this.redBallState = redBall.ballState
 
-        const blueBall = constructBlueBall(scene)
+        const blueBall = constructBall(scene, 3, "blue", false)
         this.blueBall = blueBall.mesh;
         this.blueBallState = blueBall.ballState
         this.score = 0
@@ -95,6 +95,22 @@ function constructRedBall(scene) {
     const ballState = new BallState()
     const geometry = new THREE.SphereGeometry( 2, 32, 32 );
     const material = new THREE.MeshStandardMaterial( { color: 0xff0000 } );
+    const sphere = new THREE.Mesh( geometry, material );
+    sphere.position.set(ballState.position[0], ballState.position[1], 0)
+    scene.add(sphere)
+    return {mesh: sphere, ballState}
+}
+
+function constructBall(scene, radius, color, noFriction) {
+    const ballState = new BallState(noFriction)
+    let colorHex = 0xffffff;
+    if(color == "blue") {
+        colorHex = 0x0000FF
+    } else if (color == "red") {
+        colorHex = 0xff0000
+    }
+    const geometry = new THREE.SphereGeometry( radius, 32, 32 );
+    const material = new THREE.MeshStandardMaterial( { color: colorHex} );
     const sphere = new THREE.Mesh( geometry, material );
     sphere.position.set(ballState.position[0], ballState.position[1], 0)
     scene.add(sphere)
