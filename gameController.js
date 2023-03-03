@@ -4,7 +4,20 @@ import * as THREE from 'three'
 
 export class GameController {
     constructor(scene) {
-        const whiteBall = constructPlayerBall()
+        this.reset(scene);
+    }
+
+    reset(scene) {
+        if (this.playerBall) {
+            scene.remove(this.playerBall)
+        }
+        if (this.redBall) {
+            scene.remove(this.redBall)
+        }
+        if (this.blueBall) {
+            scene.remove(this.blueBall)
+        }
+        const whiteBall = constructPlayerBall(scene)
         this.playerBall = whiteBall.mesh;
         this.playerBallState = whiteBall.ballState
         this.scene = scene
@@ -17,6 +30,7 @@ export class GameController {
         this.blueBall = blueBall.mesh;
         this.blueBallState = blueBall.ballState
         this.score = 0
+        this.bestScore = this.bestScore ? this.score : Math.max(this.bestScore, this.score)
     }
 
     detectCollision() {
@@ -61,14 +75,19 @@ export class GameController {
         return this.score
     }
 
+    clearScore() {
+        this.score = 0;
+    }
+
 }
 
-function constructPlayerBall() {
+function constructPlayerBall(scene) {
     const ballState = new BallState()
     const geometry = new THREE.SphereGeometry( 3, 32, 32 );
     const material = new THREE.MeshStandardMaterial( { color: 0xfffff0 } );
     const sphere = new THREE.Mesh( geometry, material );
     sphere.position.set(ballState.position[0], ballState.position[1], 0)
+    scene.add(sphere)
     return {mesh: sphere, ballState}
 }
 

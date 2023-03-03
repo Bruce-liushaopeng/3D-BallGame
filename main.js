@@ -37,8 +37,6 @@ scene.add( line );
 const sphereSize = 1;
 const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
 scene.add( pointLightHelper );
-
-scene.add(gameController.getPlayerBall());
 function animate() {
   requestAnimationFrame( animate );
   gameController.moveWhiteBall();
@@ -47,7 +45,6 @@ function animate() {
   renderer.render(scene, camera)
   scoreDiv.innerHTML = gameController.getScore();
 }
-
 document.onkeydown = handleKeypress(gameController.getPlayerBallState());
 animate()
 

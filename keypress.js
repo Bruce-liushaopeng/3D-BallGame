@@ -1,4 +1,6 @@
 export const handleKeypress = (ballState) => {
+    console.log("keypress")
+    console.log(ballState)
     return (e) => {
         if (e.keyCode == '38') {
             //up arrow
