@@ -20,10 +20,10 @@ export class GameController {
     }
 
     detectCollision() {
-        const xDiffRed = Math.abs(Math.abs(this.playerBall.position.x) - Math.abs(this.redBall.position.x))
-        const yDiffRed = Math.abs(Math.abs(this.playerBall.position.y) - Math.abs(this.redBall.position.y))
-        const xDiffBlue = Math.abs(Math.abs(this.playerBall.position.x) - Math.abs(this.blueBall.position.x))
-        const yDiffBlue= Math.abs(Math.abs(this.playerBall.position.y) - Math.abs(this.blueBall.position.y))
+        const xDiffRed = Math.abs(this.playerBall.position.x - this.redBall.position.x)
+        const yDiffRed = Math.abs(this.playerBall.position.y - this.redBall.position.y)
+        const xDiffBlue = Math.abs(this.playerBall.position.x - this.blueBall.position.x)
+        const yDiffBlue= Math.abs(this.playerBall.position.y - this.blueBall.position.y)
         if (xDiffRed < 3 && yDiffRed < 3) {
                 this.scene.remove(this.redBall)
                 const newRedBall = constructRedBall(this.scene)
