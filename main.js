@@ -3,11 +3,15 @@ import * as THREE from 'three'
 import { pointLight, pointLight2, pointLight3, pointLight4 } from './pointLight';
 import { BallState } from './ballState';
 import { handleKeypress } from './keypress';
+import { GameController } from './gameController';
+var scoreDiv = document.querySelector("div");
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGL1Renderer({
   canvas: document.querySelector('#bg'),
 })
+
+const gameController = new GameController(scene)
 
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -34,19 +38,17 @@ const sphereSize = 1;
 const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
 scene.add( pointLightHelper );
 
-const ballState1 = new BallState()
-const geometry = new THREE.SphereGeometry( 3, 32, 32 );
-const material = new THREE.MeshStandardMaterial( { color: 0xfffff0 } );
-const sphere = new THREE.Mesh( geometry, material );
-console.log(ballState1.position[0]);
-sphere.position.set(ballState1.position[0], ballState1.position[1], 0)
-scene.add( sphere );
+
+scene.add(gameController.getPlayerBall());
 
 function animate() {
   requestAnimationFrame( animate );
-  ballState1.moveBall(sphere)
+  gameController.moveWhiteBall();
+  gameController.detectCollision();
   renderer.render(scene, camera)
+  scoreDiv.innerHTML = gameController.getScore();
 }
 
-document.onkeydown = handleKeypress(ballState1);
+document.onkeydown = handleKeypress(gameController.getPlayerBallState());
 animate()
+

@@ -1,4 +1,21 @@
 body {
   position: fixed
-  
+}
+
+h3 {
+  position: absolute;
+  color : red;
+  width: 200px;
+  top: 10px;
+  left: 10px;
+  font-size: 3rem;
+}
+
+div {
+  position: absolute;
+  color : red;
+  width: 200px;
+  top: 48px;
+  left: 145px;
+  font-size: 4rem;
 }
