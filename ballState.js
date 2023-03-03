@@ -23,6 +23,10 @@ export class BallState {
         }
     }
 
+    getSpeed() {
+        return MathMath.sqrt(this.xSpeed^2 + this.ySpeed^2)
+    }
+
     speedDecrease() {
         if (Math.abs(this.xSpeed) < 0.003) {
             this.xSpeed = 0
