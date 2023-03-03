@@ -50,7 +50,7 @@ export class GameController {
             const newBlueBall = constructBlueBall(this.scene)
             this.blueBall = newBlueBall.mesh
             this.blueBallState = newBlueBall.ballState
-            this.score -= 1
+            this.score -= 5
             // alert("try not don't BLUE ball XD" + this.playerBall.position.x + " " + this.blueBall.position.x +" " + this.playerBall.position.y + " " + this.blueBall.position.y)
         }
     }
