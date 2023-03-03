@@ -41,6 +41,7 @@ function animate() {
   requestAnimationFrame( animate );
   gameController.moveWhiteBall();
   gameController.moveBlueBall()
+  gameController.moveYellowBall();
   gameController.detectCollision();
   renderer.render(scene, camera)
   scoreDiv.innerHTML = gameController.getScore();
