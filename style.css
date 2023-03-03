@@ -11,7 +11,16 @@ h3 {
   font-size: 3rem;
 }
 
-div {
+h4 {
+  position: absolute;
+  color : red;
+  width: 200px;
+  top: 170px;
+  left: 10px;
+  font-size: 2rem;
+}
+
+div, .scoreDisplay {
   position: absolute;
   color : red;
   width: 200px;
